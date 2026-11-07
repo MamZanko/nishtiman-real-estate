@@ -1,0 +1,1 @@
+import { I18nProvider } from '@/components/i18n-provider'; import { PolicyPage } from '@/components/policy-page'; export default function TermsPage() { return <I18nProvider><PolicyPage titleKey="terms" bodyKey="termsText"/></I18nProvider> }

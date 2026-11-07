@@ -1,0 +1,3 @@
+'use client'
+import { useTranslation } from './i18n-provider'; import type { Language } from '@/lib/types'
+export function LanguageSwitcher() { const { language, setLanguage } = useTranslation(); return <label className="sr-only"><span>Language</span><select aria-label="Language" value={language || 'ku'} onChange={e => setLanguage(e.target.value as Language)} className="rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-[#1d4035] outline-none focus:ring-2 focus:ring-[#b27b45]"><option value="ku">کوردی</option><option value="ar">العربية</option><option value="en">English</option></select></label> }
