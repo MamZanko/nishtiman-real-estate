@@ -22,7 +22,7 @@ export type TranslationKey = string
 export type PublicPropertyCard = Pick<PublicProperty, 'id' | 'title' | 'city' | 'type' | 'listingType' | 'status' | 'price' | 'currency' | 'coverImage' | 'size' | 'featured'>
 export const languages: Language[] = ['ku', 'ar', 'en']
 export const isRtl = (language: Language) => language !== 'en'
-export const localized = (value: LocalizedText, language: Language) => value[language] || value.ku
+export const localized = (value: LocalizedText, language: Language) => value[language] || value.en || value.ku
 export const formatMoney = (amount: number, currency: Currency, _language: Language) => amount.toLocaleString('en-US') + (currency === 'USD' ? ' $' : ' د.ع')
 export const propertyTypeKeys: PropertyType[] = ['house', 'apartment', 'land', 'shop', 'office']
 export const propertyStatusKeys: PropertyStatus[] = ['available', 'reserved', 'rented', 'sold', 'returned']
