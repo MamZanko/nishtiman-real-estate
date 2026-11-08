@@ -23,7 +23,7 @@ export type PublicPropertyCard = Pick<PublicProperty, 'id' | 'title' | 'city' | 
 export const languages: Language[] = ['ku', 'ar', 'en']
 export const isRtl = (language: Language) => language !== 'en'
 export const localized = (value: LocalizedText, language: Language) => value[language] || value.en || value.ku
-export const formatMoney = (amount: number, currency: Currency, _language: Language) => amount.toLocaleString('en-US') + (currency === 'USD' ? ' $' : ' د.ع')
+export const formatMoney = (amount: number, currency: Currency, language: Language) => { const suffix = currency === 'USD' ? ' $' : language === 'en' ? ' IQD' : ' د.ع'; return amount.toLocaleString('en-US') + suffix }
 export const propertyTypeKeys: PropertyType[] = ['house', 'apartment', 'land', 'shop', 'office']
 export const propertyStatusKeys: PropertyStatus[] = ['available', 'reserved', 'rented', 'sold', 'returned']
 export const listingTypeKeys: ListingType[] = ['rent', 'sale']
