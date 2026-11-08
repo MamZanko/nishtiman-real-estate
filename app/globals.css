@@ -89,8 +89,72 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity, filter;
+    transition-duration: 240ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html {
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
+    animation: page-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  a, button, [role='button'] {
+    transform: translateZ(0);
+  }
+  a:hover, button:hover, [role='button']:hover {
+    transform: translateY(-2px);
+  }
+  a:active, button:active, [role='button']:active {
+    transform: translateY(0) scale(0.98);
+  }
+  img {
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms ease;
+  }
+  a:hover img, article:hover img {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+main > section {
+  animation: rise-in 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+main > section:nth-child(2) { animation-delay: 120ms; }
+main > section:nth-child(3) { animation-delay: 220ms; }
+
+article, [class*='rounded-3xl'], [class*='rounded-2xl'] {
+  animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+article:nth-child(2), [class*='grid'] > :nth-child(2) { animation-delay: 100ms; }
+article:nth-child(3), [class*='grid'] > :nth-child(3) { animation-delay: 180ms; }
+
+header {
+  animation: page-enter 900ms ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
